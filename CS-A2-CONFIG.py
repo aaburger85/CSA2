@@ -23,7 +23,7 @@ else:
     net_connect.send_config_set('service internal')
 while True:
     print()
-    selection = input("Which would you like to do?\n(a) Poke switch config?\n(b) Check Status?\n(c) Delete config and log?\n(d) capture details for bug triage?\n").lower()
+    selection = input("Which would you like to do?\n(a) Poke switch config?\n(b) Check Status?\n(c) Delete config and log?\n(d) Capture details for bug triage?\n").lower()
     print (f"You chose: {selection}")
     if "a" in selection:
         gethash = net_connect.send_command("test platform software config updater get")
@@ -46,6 +46,7 @@ while True:
         output = net_connect.send_command("show meraki connect")
         output2 = net_connect.send_command("show meraki conf up")
         output3 = net_connect.send_command("more flash:meraki/config_updater/updater_err.xml")
+        output4 = net_connect.send_command("show platform software yang-management process state")
         print (output)
         print (output2)
         if "Apply running config: Fail" in output2:
@@ -55,6 +56,9 @@ while True:
                     print (line)
                 else:
                     print (output3)
+        if " Get presigned url: Fail" in output2:
+            print ("Presigned URL failed, Checking Service state...")
+            print (output4)
     elif "c" in selection:
         print ("Deleting downloaded config...")
         killconfig = net_connect.send_command("delete /force flash:/meraki/config_updater/monitor/dwnld_running.config")
