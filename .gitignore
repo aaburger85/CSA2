@@ -1,5 +1,6 @@
 debug_files/
 .DS_Store/
+*.code-workspace
 # Ignore generated files
 *.class
 *.jar
