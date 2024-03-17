@@ -10,7 +10,7 @@ switch_password = sys.argv[3]
 ####
 net_connect = ConnectHandler(
     device_type="cisco_xe",
-    host= switch_ip,
+    host=switch_ip,
     username=switch_username,
     password=switch_password,
 )
