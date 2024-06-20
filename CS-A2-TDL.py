@@ -67,8 +67,7 @@ while True:
     elif "e" in selection:
         record_uri = input ("Get N Recursive uri:")
         refactored_record = record_uri.replace('?', '/')
-        output = net_connect.send_command("show platform software ndbman swi act r0 database get_n_recursive" + " " + refactored_record,
-                                          read_timeout=1000)
+        output = net_connect.send_command("show platform software ndbman swi act r0 database get_n_recursive" + " " + refactored_record)
         print (output)
     else:
         print ("Exiting due to no valid selection")
